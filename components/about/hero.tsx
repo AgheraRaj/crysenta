@@ -5,7 +5,7 @@ export default function AboutHero() {
   return (
     <section className="bg-[#E9E8E4]">
       {/* Text block */}
-      <div className="relative overflow-hidden px-6 pt-32 pb-16 sm:px-10 sm:pt-40 sm:pb-20 lg:px-14 lg:pt-48 lg:pb-24">
+      <div className="relative overflow-hidden px-6 pt-32 pb-16 sm:px-10 sm:pt-38 sm:pb-20 lg:px-14 lg:pt-40 lg:pb-24">
         {/* soft background mark */}
         <Leaf
           className="pointer-events-none absolute top-1/2 left-1/2 h-[380px] w-[380px] -translate-x-1/2 -translate-y-1/2 text-[#6d8333] opacity-[0.05] sm:h-[480px] sm:w-[480px] lg:h-[560px] lg:w-[560px]"
@@ -42,7 +42,7 @@ export default function AboutHero() {
       </div>
 
       {/* Full-bleed image */}
-      <div className="relative h-[70vh] min-h-[420px] w-full sm:h-[75vh] lg:h-[85vh]">
+      <div className="relative h-[70vh] min-h-[420px] w-full sm:h-[75vh] lg:h-[85vh] rounded-t-4xl overflow-hidden">
         <Image
           src="/images/aerial-farm-tractor-field.png"
           alt="Aerial view of farmland with agricultural machinery"
