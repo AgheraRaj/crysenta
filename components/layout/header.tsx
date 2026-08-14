@@ -4,11 +4,12 @@ import { useEffect, useState } from "react";
 import { Phone, Menu, X } from "lucide-react";
 import { Button } from "../ui/button";
 import Image from "next/image";
+import Link from "next/link";
 
 const navLinks = [
-  { label: "Home", href: "#" },
-  { label: "About Us", href: "#" },
-  { label: "Our Products", href: "#" },
+  { label: "Home", href: "/" },
+  { label: "About Us", href: "/about" },
+  { label: "Our Products", href: "/products" },
 ];
 
 export default function Header() {
@@ -45,9 +46,9 @@ export default function Header() {
           <ul className="flex space-x-12">
             {navLinks.map((link) => (
               <li key={link.label}>
-                <a href={link.href} className="hover:underline">
+                <Link href={link.href} className="hover:underline">
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

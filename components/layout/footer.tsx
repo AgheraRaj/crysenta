@@ -117,16 +117,11 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Watermark heading */}
-        <div className="mt-14 select-none overflow-hidden sm:mt-20 hidden md:block">
-          <div className="flex flex-col space-y-2 sm:space-y-4">
-            <h2 className="text-4xl leading-none font-semibold whitespace-nowrap text-neutral-800 sm:text-6xl md:text-7xl lg:text-9xl">
-              Crysenta International
-            </h2>
-            <h3 className="text-xl text-neutral-800 sm:text-3xl md:text-4xl lg:text-5xl">
-              Extend <span className="font-bold">Production</span> Beyond Limit
-            </h3>
-          </div>
+        {/* Watermark */}
+        <div className="hidden select-none overflow-hidden py-4 md:block" aria-hidden="true">
+          <h2 className="whitespace-nowrap bg-gradient-to-b from-neutral-800 to-transparent bg-clip-text text-6xl font-bold leading-none tracking-tight text-transparent lg:text-8xl xl:text-9xl">
+            Crysenta International
+          </h2>
         </div>
 
         {/* Bottom bar */}
