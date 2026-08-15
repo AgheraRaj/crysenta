@@ -1,47 +1,62 @@
-import { Sprout, Leaf } from "lucide-react";
+import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
 
-export default function VisionMission() {
+const panels = [
+  {
+    label: "Mission",
+    description:
+      "We serve the agriculture market through continuous innovations with the latest technologies to ensure balanced nutrition for crops, resulting in nutritious food production and better human health.",
+    image: "/images/mission-image.png",
+    imageAlt: "Hands holding fresh soil",
+    reverse: false,
+  },
+  {
+    label: "Vision",
+    description:
+      "Our vision is to manufacture and supply speciality fertilizer products with the aim of providing complete nutrition to crops and enhancing crop productivity.",
+    image: "/images/vision-image.png",
+    imageAlt: "Agricultural research and planning",
+    reverse: true,
+  },
+];
+
+export default function MissionVision() {
   return (
-    <section className="bg-white">
-      <div className="grid grid-cols-1 lg:grid-cols-2">
-        {/* VISION — dark panel */}
-        <div className="flex flex-col justify-center bg-black px-6 py-16 text-white sm:px-10 sm:py-20 lg:px-14 lg:py-28">
-          <div className="max-w-lg">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[#6d8333]">
-              <Sprout className="h-5 w-5 text-[#6d8333]" />
+    <section className="bg-[#E9E8E4]">
+      {/* Alternating rows */}
+      <div className="flex flex-col">
+        {panels.map((panel, i) => (
+          <div
+            key={panel.label}
+            className={`relative flex items-center gap-8 bg-[#E9E8E4] px-6 sm:px-10 lg:gap-16 lg:px-14 ${
+              panel.reverse ? "flex-row-reverse" : "flex-row"
+            } ${
+              i === 0
+                ? "pt-14 pb-6 sm:pt-16 sm:pb-8 lg:pt-20 lg:pb-10"
+                : "pt-6 pb-14 sm:pt-8 sm:pb-16 lg:pt-10 lg:pb-20"
+            }`}
+          >
+            {/* circular image */}
+            <div className="relative h-32 w-32 shrink-0 overflow-hidden rounded-full ring-8 ring-white sm:h-48 sm:w-48 lg:h-64 lg:w-64">
+              <Image
+                src={panel.image}
+                alt={panel.imageAlt}
+                fill
+                className="object-cover"
+              />
             </div>
 
-            <h2 className="mt-8 text-3xl font-medium tracking-tight sm:text-4xl lg:text-5xl">
-              Our Vision
-            </h2>
-
-            <p className="mt-6 text-base leading-7 text-neutral-300 sm:text-lg sm:leading-8">
-              Our vision is to manufacture and supply speciality fertilizer
-              products with the aim of providing complete nutrition to crops
-              and enhancing crop productivity.
-            </p>
-          </div>
-        </div>
-
-        {/* MISSION — light panel */}
-        <div className="flex flex-col justify-center bg-[#E9E8E4] px-6 py-16 text-black sm:px-10 sm:py-20 lg:px-14 lg:py-28 border-y border-[#6d8333]">
-          <div className="max-w-lg">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[#6d8333]">
-              <Leaf className="h-5 w-5 text-[#6d8333]" />
+            {/* text */}
+            <div className={`max-w-xl ${panel.reverse ? "text-right" : "text-left"}`}>
+              <h3 className="text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl lg:text-5xl">
+                {panel.label}
+              </h3>
+              <p className="mt-4 text-sm leading-6 text-neutral-600 sm:text-base sm:leading-7">
+                {panel.description}
+              </p>
             </div>
-
-            <h2 className="mt-8 text-3xl font-medium tracking-tight text-neutral-900 sm:text-4xl lg:text-5xl">
-              Our Mission
-            </h2>
-
-            <p className="mt-6 text-base leading-7 text-neutral-700 sm:text-lg sm:leading-8">
-              We serve the agriculture market through continuous innovations
-              with the latest technologies to ensure balanced nutrition for
-              crops, resulting in nutritious food production and better
-              human health.
-            </p>
           </div>
-        </div>
+        ))}
       </div>
     </section>
   );

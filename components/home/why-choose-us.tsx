@@ -1,86 +1,108 @@
 import Image from "next/image";
-import { Star, Check, MoveRight } from "lucide-react";
-import {
-  Card,
-  CardHeader,
-  CardContent,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Leaf, HeartHandshake, MoveRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const reasons = [
-  "ISO-certified manufacturing with strict quality checks",
-  "Custom nutrient blends for soil-specific conditions",
-  "Dedicated agronomist support, from sowing to harvest",
+  {
+    icon: Leaf,
+    title: "Soil Friendly",
+    description: "Formulated to protect long-term soil health, not just one season's yield.",
+  },
+  {
+    icon: HeartHandshake,
+    title: "Farmer Focused",
+    description: "Every formula is developed around real field conditions, not lab assumptions.",
+  },
 ];
 
 export default function WhyChooseUs() {
   return (
-    <section className="relative min-h-[600px] overflow-hidden sm:min-h-[650px] lg:min-h-[750px]">
-      {/* BACKGROUND IMAGE */}
-      <Image
-        src="/images/granules-plants.png"
-        alt="granules plants"
-        fill
-        priority
-        className="object-cover"
-        sizes="100vw"
-      />
+    <section className="bg-[#dedbd3]">
+      <div className="mx-auto max-w-[1600px] px-6 py-20 sm:px-10 sm:py-28 lg:px-14 lg:py-32">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          {/* LEFT — image with floating testimonial */}
+          <div className="relative">
+            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[2rem] bg-neutral-200 sm:aspect-[3/4]">
+              <Image
+                src="/images/farmer.jpeg"
+                alt="Crysenta agronomist applying fertilizer to healthy crops"
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 50vw, 100vw"
+              />
+            </div>
 
-      {/* dark overlay for text contrast on smaller screens where card sits over the image */}
-      <div className="absolute inset-0 bg-black/20 lg:bg-black/10" />
+            {/* floating testimonial card */}
+            <div className="absolute bottom-6 left-6 max-w-[280px] rounded-2xl bg-white p-5 shadow-xl sm:bottom-8 sm:left-8 sm:p-6">
+              <p className="text-sm leading-6 font-medium text-neutral-900 sm:text-base">
+                &ldquo;Reliable results and real support made the switch to
+                Crysenta easy.&rdquo;
+              </p>
+              <div className="mt-4 flex items-center gap-3">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#6d8333] text-xs font-semibold text-white">
+                  RP
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-neutral-900">
+                    Ramesh Patel
+                  </p>
+                  <p className="text-xs text-neutral-500">
+                    Junagadh, Gujarat
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
 
-      {/* CARD */}
-      <div className="relative mx-auto flex min-h-[600px] max-w-[1600px] items-end px-4 py-10 sm:min-h-[650px] sm:items-center sm:px-8 sm:py-16 lg:min-h-[750px] lg:justify-end lg:px-14 lg:py-20">
-        <Card className="w-full gap-0 rounded-2xl border-0 bg-[#6d8333] p-6 sm:max-w-lg sm:p-10 md:p-12 lg:flex lg:w-[450px] lg:flex-col lg:justify-between lg:p-10 xl:w-[520px] xl:p-12">
-          <CardHeader className="block p-0">
-            <h2 className="text-2xl font-medium leading-[1.1] tracking-tight text-white sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl">
-              Quality You Can Grow On
+          {/* RIGHT — text */}
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#6d8333]" />
+              <span className="text-xs font-semibold tracking-[0.2em] text-[#6d8333] uppercase">
+                About Us
+              </span>
+            </div>
+
+            <h2 className="mt-5 text-4xl font-medium tracking-tight text-neutral-900 sm:text-5xl">
+              Why choose us?
             </h2>
 
-            <div className="mt-4 flex flex-wrap items-center gap-2 sm:mt-5 sm:gap-3">
-              <div className="flex gap-0.5">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star
-                    key={i}
-                    size={16}
-                    className="fill-amber-400 text-amber-400 sm:size-[18px]"
-                  />
-                ))}
-              </div>
-              <Badge>500+ Farms Nourished</Badge>
-            </div>
-          </CardHeader>
-
-          <CardContent className="mt-4 p-0 sm:mt-6">
-            <p className="text-sm leading-6 text-white/90 sm:text-base sm:leading-7">
-              Every batch is tested for purity and nutrient balance before it
-              leaves our facility, so what&apos;s on the label is exactly what
-              reaches your soil.
+            <p className="mt-5 max-w-md text-base leading-7 text-neutral-600 sm:text-lg sm:leading-8">
+              Every batch is tested for purity and nutrient balance before
+              it leaves our facility, so what&apos;s on the label is
+              exactly what reaches your soil.
             </p>
 
-            <ul className="mt-6 space-y-3 sm:mt-8 sm:space-y-4">
-              {reasons.map((reason) => (
-                <li key={reason} className="flex items-start gap-3">
-                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white/15">
-                    <Check className="h-3 w-3 text-white" />
-                  </span>
-                  <span className="text-sm leading-6 text-white sm:text-[15px] sm:leading-6 md:text-base">
-                    {reason}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </CardContent>
+            <div className="mt-10 flex flex-col gap-7">
+              {reasons.map((reason) => {
+                const Icon = reason.icon;
+                return (
+                  <div key={reason.title} className="flex items-start gap-4">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#6d8333]/30 bg-[#6d8333]/10 text-[#6d8333]">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <h3 className="text-base font-semibold text-neutral-900">
+                        {reason.title}
+                      </h3>
+                      <p className="mt-1 text-sm leading-6 text-neutral-600">
+                        {reason.description}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
 
-          <Button
-            size="lg"
-            className="h-auto w-fit rounded-full bg-black px-7 py-4 text-white hover:bg-black/90 mt-8 sm:mt-10"
-          >
-            Explore Our Products
-            <MoveRight />
-          </Button>
-        </Card>
+            <Button
+              size="lg"
+              className="mt-10 h-auto w-fit rounded-full bg-[#6d8333] px-7 py-4 text-white hover:bg-[#5c7029]"
+            >
+              Get in Touch
+              <MoveRight />
+            </Button>
+          </div>
+        </div>
       </div>
     </section>
   );

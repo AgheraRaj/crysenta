@@ -1,6 +1,15 @@
+"use client";
+
 import Image from "next/image";
+import { useRef } from "react";
+import Autoplay from "embla-carousel-autoplay";
 import { Recycle, CloudSun, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
 
 const features = [
   {
@@ -23,10 +32,27 @@ const features = [
   },
 ];
 
+const productImages = [
+  "/products/00-00-50.png",
+  "/products/00-52-34.png",
+  "/products/12-61-00.png",
+  "/products/13-00-45.png",
+  "/products/13-40-13.png",
+  "/products/19-19-19.png",
+  "/products/Boron-20.png",
+  "/products/Calcium-Nitrate.png",
+  "/products/DELTROL.png",
+  "/products/CALCIBOZ.png",
+  "/products/GROXAL.png"
+];
+
 export default function AboutFertilizer() {
+  const autoplay = useRef(
+    Autoplay({ delay: 2800, stopOnInteraction: false })
+  );
+
   return (
     <section className="relative bg-[#E9E8E4]">
-
       <div className="mx-auto max-w-[1600px] px-6 py-24 sm:px-10 sm:py-28 lg:px-14 lg:py-32">
         <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-12 lg:gap-8">
           {/* LEFT — text */}
@@ -55,15 +81,29 @@ export default function AboutFertilizer() {
             </Button>
           </div>
 
-          {/* CENTER — product image */}
+          {/* CENTER — product carousel with NPK badges */}
           <div className="order-2 flex justify-center lg:order-none lg:col-span-4">
-            <div className="relative h-[340px] w-[220px] sm:h-[420px] sm:w-[270px] lg:h-[480px] lg:w-[300px]">
-              <Image
-                src="/images/19-19-19.png"
-                alt="Crysenta fertilizer bag"
-                fill
-                className="object-contain drop-shadow-2xl"
-              />
+            <div className="w-[220px] sm:w-[270px] lg:w-[300px]">
+              <Carousel
+                opts={{ loop: true }}
+                plugins={[autoplay.current]}
+                className="w-full"
+              >
+                <CarouselContent>
+                  {productImages.map((src, i) => (
+                    <CarouselItem key={i}>
+                      <div className="relative h-[340px] w-full sm:h-[420px] lg:h-[480px]">
+                        <Image
+                          src={src}
+                          alt="Crysenta fertilizer bag"
+                          fill
+                          className="object-contain drop-shadow-2xl"
+                        />
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+              </Carousel>
             </div>
           </div>
 

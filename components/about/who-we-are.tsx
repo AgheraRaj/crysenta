@@ -9,7 +9,7 @@ const highlights = [
 
 export default function WhoWeAre() {
   return (
-    <section className="bg-[#E9E8E4]">
+    <section className="bg-[#dedbd3]">
       <div className="mx-auto max-w-[1600px] px-6 py-20 sm:px-10 sm:py-28 lg:px-14 lg:py-32">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-6">
           {/* LEFT — eyebrow */}
@@ -43,7 +43,7 @@ export default function WhoWeAre() {
                 return (
                   <div
                     key={item.label}
-                    className="flex items-center gap-2.5 rounded-2xl border border-[#6d8333]/30 bg-white px-4 py-3 sm:rounded-full sm:px-5 sm:py-2.5"
+                    className="flex items-center gap-2.5 rounded-2xl border border-[#6d8333]/30 bg-[#E9E8E4] px-4 py-3 sm:rounded-full sm:px-5 sm:py-2.5"
                   >
                     <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#6d8333]/10 sm:h-auto sm:w-auto sm:rounded-none sm:bg-transparent">
                       <Icon className="h-4 w-4 text-[#6d8333]" />

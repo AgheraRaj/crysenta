@@ -1,5 +1,5 @@
 import AboutFertilizer from "@/components/home/about-fertilizer";
-import BuildTrust from "@/components/home/build-trust";
+import FAQ from "@/components/home/faq";
 import Hero from "@/components/home/hero";
 import VisionMission from "@/components/home/vision-mission";
 import WhatWeOffer from "@/components/home/what-we-offer";
@@ -13,7 +13,7 @@ const page = () => {
       <WhatWeOffer />
       <AboutFertilizer />
       <WhyChooseUs />
-      <BuildTrust />
+      <FAQ />
     </>
   );
 };
