@@ -1,9 +1,12 @@
+import AllProducts from "@/components/products/all-products"
+import ProductsHero from "@/components/products/products-hero"
 
 const page = () => {
   return (
-    <div>
-      products
-    </div>
+    <>
+      <ProductsHero />
+      <AllProducts />
+    </>
   )
 }
 

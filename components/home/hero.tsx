@@ -1,5 +1,6 @@
 import { Leaf, Sprout, Droplets, Star, MoveRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -19,13 +20,15 @@ export default function Hero() {
                 for sustainable farming.
               </p>
 
-              <Button
-                size="lg"
-                className="mt-8 rounded-full p-5 sm:p-6 lg:mt-12"
-              >
-                View Products
-                <MoveRight />
-              </Button>
+              <Link href="/products">
+                <Button
+                  size="lg"
+                  className="mt-8 rounded-full p-5 sm:p-6 lg:mt-12 cursor-pointer"
+                >
+                  View Products
+                  <MoveRight />
+                </Button>
+              </Link>
             </div>
           </div>
 

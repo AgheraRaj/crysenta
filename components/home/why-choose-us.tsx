@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Leaf, HeartHandshake, MoveRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const reasons = [
   {
@@ -94,13 +95,15 @@ export default function WhyChooseUs() {
               })}
             </div>
 
-            <Button
-              size="lg"
-              className="mt-10 h-auto w-fit rounded-full bg-[#6d8333] px-7 py-4 text-white hover:bg-[#5c7029]"
-            >
-              Get in Touch
-              <MoveRight />
-            </Button>
+            <Link href="/contact">
+              <Button
+                size="lg"
+                className="mt-10 h-auto w-fit rounded-full bg-[#6d8333] px-7 py-4 text-white hover:bg-[#5c7029] cursor-pointer"
+              >
+                Get in Touch
+                <MoveRight />
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

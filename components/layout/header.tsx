@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { Phone, Menu, X } from "lucide-react";
 import { Button } from "../ui/button";
 import Image from "next/image";
@@ -15,6 +16,7 @@ const navLinks = [
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -25,28 +27,35 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 h-19 transition-all duration-300 ${
-        scrolled
-          ? `border-b border-neutral-200 ${mobileOpen ? "bg-white" : "bg-white/70"} backdrop-blur-md`
-          : `border-b border-transparent ${mobileOpen ? "bg-white" : "bg-transparent"}`
-      }`}
+      className={`fixed inset-x-0 top-0 z-50 h-19 transition-all duration-300 ${scrolled
+        ? `border-b border-neutral-200 ${mobileOpen ? "bg-white" : "bg-white/70"} backdrop-blur-md`
+        : `border-b border-transparent ${mobileOpen ? "bg-white" : "bg-transparent"}`
+        }`}
     >
       <div className="flex h-full items-center justify-between px-6 md:px-10">
-        <Image
-          src="/crysenta-logo.png"
-          alt="company logo"
-          width={160}
-          height={80}
-          className="h-12 w-auto md:h-16"
-          priority
-        />
+        <Link href="/" className="cursor-pointer">
+          <Image
+            src="/crysenta-logo.png"
+            alt="company logo"
+            width={160}
+            height={80}
+            className="h-12 w-auto md:h-16"
+            priority
+          />
+        </Link>
 
         {/* Desktop nav */}
         <nav className="hidden md:block">
           <ul className="flex space-x-12">
             {navLinks.map((link) => (
               <li key={link.label}>
-                <Link href={link.href} className="hover:underline">
+                <Link
+                  href={link.href}
+                  className={`transition-colors ${pathname === link.href
+                    ? "text-[#6d8333] font-semibold"
+                    : "text-neutral-700 hover:text-[#6d8333]"
+                    }`}
+                >
                   {link.label}
                 </Link>
               </li>
@@ -55,9 +64,11 @@ export default function Header() {
         </nav>
 
         {/* Desktop CTA */}
-        <Button size="lg" className="hidden rounded-full p-5 md:inline-flex">
-          <Phone /> Contact
-        </Button>
+        <Link href="/contact">
+          <Button size="lg" className="hidden rounded-full p-5 md:inline-flex cursor-pointer">
+            <Phone /> Contact
+          </Button>
+        </Link>
 
         {/* Mobile toggle */}
         <Button
@@ -76,19 +87,24 @@ export default function Header() {
           <ul className="flex flex-col space-y-5">
             {navLinks.map((link) => (
               <li key={link.label}>
-                <a
+                <Link
                   href={link.href}
-                  className="text-md"
+                  className={`text-md transition-colors ${pathname === link.href
+                      ? "font-semibold text-[#6d8333]"
+                      : "text-neutral-700"
+                    }`}
                   onClick={() => setMobileOpen(false)}
                 >
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
-          <Button size="lg" className="mt-6 w-full rounded-full p-5">
-            <Phone /> Contact
-          </Button>
+          <Link href="/contact">
+            <Button size="lg" className="mt-6 w-full rounded-full p-5" onClick={() => setMobileOpen(false)}>
+              <Phone /> Contact
+            </Button>
+          </Link>
         </div>
       )}
     </header>

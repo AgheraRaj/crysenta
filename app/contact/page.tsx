@@ -1,13 +1,13 @@
+import ContactForm from "@/components/contact/contact-form";
 import ContactHero from "@/components/contact/contact-hero";
-import ContactInfoCards from "@/components/contact/contact-info-cards";
-import ContactDetails from "@/components/contact/contact-details";
+import ContactMap from "@/components/contact/contact-map";
 
 const ContactPage = () => {
   return (
     <>
-      <ContactHero />
-      <ContactInfoCards />
-      <ContactDetails />
+    <ContactHero />
+    <ContactForm />
+    <ContactMap />
     </>
   );
 };
