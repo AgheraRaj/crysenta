@@ -4,26 +4,116 @@ import { useState } from "react";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { LayoutGrid, Droplets, FlaskConical, Waves } from "lucide-react";
 
-const filters = ["All Products", "Liquid Fertilizer", "Micronutrient", "Water Soluble Fertilizer"];
+const filterIcons: Record<string, typeof LayoutGrid> = {
+  "All Products": LayoutGrid,
+  "Liquid Fertilizer": Droplets,
+  Micronutrient: FlaskConical,
+  "Water Soluble Fertilizer": Waves,
+};
+
+const filters = [
+  "All Products",
+  "Liquid Fertilizer",
+  "Micronutrient",
+  "Water Soluble Fertilizer",
+];
 
 const products = [
-  { name: "NPK 00:52:34", category: "Water Soluble Fertilizer", packs: ["1 kg"], grade: "00-52-34", desc: "High-phosphorus, high-potassium blend ideal for flowering and fruiting stages.", image: "/products/00-52-34.png" },
-  { name: "NPK 19:19:19", category: "Water Soluble Fertilizer", packs: ["1 kg"], grade: "19-19-19", desc: "Fully balanced NPK blend suited for general crop nutrition at every stage.", image: "/products/19-19-19.png" },
-  { name: "NPK 12:61:00", category: "Water Soluble Fertilizer", packs: ["1 kg"], grade: "12-61-00", desc: "High-phosphorus formula for early root development and vigorous growth.", image: "/products/12-61-00.png" },
-  { name: "NPK 13:00:45", category: "Water Soluble Fertilizer", packs: ["1 kg"], grade: "13-00-45", desc: "Potassium-rich formula strengthening fruit quality, size, and shelf life.", image: "/products/13-00-45.png" },
-  { name: "NPK 13:40:13", category: "Water Soluble Fertilizer", packs: ["1 kg"], grade: "13-40-13", desc: "Balanced nutrition tailored for transplanting and establishment stages.", image: "/products/13-40-13.png" },
-  { name: "NPK 00:00:50", category: "Water Soluble Fertilizer", packs: ["1 kg"], grade: "00-00-50", desc: "Pure potassium formula improving stress tolerance and crop quality.", image: "/products/00-00-50.png" },
-  { name: "Calcium Nitrate", category: "Water Soluble Fertilizer", packs: ["1 kg"], grade: "CaNO3", desc: "Readily available calcium and nitrogen, reducing disorders in crops.", image: "/products/Calcium-Nitrate.png" },
-  { name: "Boron 20", category: "Micronutrient", packs: ["500 ml"], grade: "B 20%", desc: "Corrects boron deficiency, supporting flowering and fruit set.", image: "/products/Boron-20.png" },
-  { name: "Calciboz", category: "Liquid Fertilizer", packs: ["500 ml", "1 L"], grade: "Ca-B", desc: "Liquid calcium-boron combination for improved fruit firmness.", image: "/products/CALCIBOZ.png" },
-  { name: "Deltrol", category: "Liquid Fertilizer", packs: ["500 ml", "1 L"], grade: "Liquid", desc: "Specialty formula supporting consistent growth across field conditions.", image: "/products/DELTROL.png" },
-  { name: "Groxal", category: "Liquid Fertilizer", packs: ["500 ml", "1 L"], grade: "Liquid", desc: "Fast-absorbing nutrition for rapid correction of deficiency symptoms.", image: "/products/GROXAL.png" },
+  {
+    name: "NPK 00:52:34",
+    category: "Water Soluble Fertilizer",
+    packs: ["1 kg"],
+    grade: "00-52-34",
+    desc: "High-phosphorus, high-potassium blend ideal for flowering and fruiting stages.",
+    image: "/products/00-52-34.png",
+  },
+  {
+    name: "NPK 19:19:19",
+    category: "Water Soluble Fertilizer",
+    packs: ["1 kg"],
+    grade: "19-19-19",
+    desc: "Fully balanced NPK blend suited for general crop nutrition at every stage.",
+    image: "/products/19-19-19.png",
+  },
+  {
+    name: "NPK 12:61:00",
+    category: "Water Soluble Fertilizer",
+    packs: ["1 kg"],
+    grade: "12-61-00",
+    desc: "High-phosphorus formula for early root development and vigorous growth.",
+    image: "/products/12-61-00.png",
+  },
+  {
+    name: "NPK 13:00:45",
+    category: "Water Soluble Fertilizer",
+    packs: ["1 kg"],
+    grade: "13-00-45",
+    desc: "Potassium-rich formula strengthening fruit quality, size, and shelf life.",
+    image: "/products/13-00-45.png",
+  },
+  {
+    name: "NPK 13:40:13",
+    category: "Water Soluble Fertilizer",
+    packs: ["1 kg"],
+    grade: "13-40-13",
+    desc: "Balanced nutrition tailored for transplanting and establishment stages.",
+    image: "/products/13-40-13.png",
+  },
+  {
+    name: "NPK 00:00:50",
+    category: "Water Soluble Fertilizer",
+    packs: ["1 kg"],
+    grade: "00-00-50",
+    desc: "Pure potassium formula improving stress tolerance and crop quality.",
+    image: "/products/00-00-50.png",
+  },
+  {
+    name: "Calcium Nitrate",
+    category: "Water Soluble Fertilizer",
+    packs: ["1 kg"],
+    grade: "CaNO3",
+    desc: "Readily available calcium and nitrogen, reducing disorders in crops.",
+    image: "/products/Calcium-Nitrate.png",
+  },
+  {
+    name: "Boron 20",
+    category: "Micronutrient",
+    packs: ["500 ml"],
+    grade: "B 20%",
+    desc: "Corrects boron deficiency, supporting flowering and fruit set.",
+    image: "/products/Boron-20.png",
+  },
+  {
+    name: "Calciboz",
+    category: "Liquid Fertilizer",
+    packs: ["500 ml", "1 L"],
+    grade: "Ca-B",
+    desc: "Liquid calcium-boron combination for improved fruit firmness.",
+    image: "/products/CALCIBOZ.png",
+  },
+  {
+    name: "Deltrol",
+    category: "Liquid Fertilizer",
+    packs: ["500 ml", "1 L"],
+    grade: "Liquid",
+    desc: "Specialty formula supporting consistent growth across field conditions.",
+    image: "/products/DELTROL.png",
+  },
+  {
+    name: "Groxal",
+    category: "Liquid Fertilizer",
+    packs: ["500 ml", "1 L"],
+    grade: "Liquid",
+    desc: "Fast-absorbing nutrition for rapid correction of deficiency symptoms.",
+    image: "/products/GROXAL.png",
+  },
 ];
 
 const categoryPill: Record<string, string> = {
   "Water Soluble Fertilizer": "border-blue-200 text-blue-700",
-  "Micronutrient": "border-amber-200 text-amber-700",
+  Micronutrient: "border-amber-200 text-amber-700",
   "Liquid Fertilizer": "border-[#6d8333]/30 text-[#5c7029]",
 };
 
@@ -90,48 +180,52 @@ export default function AllProducts() {
   return (
     <section className="bg-[#E7E5DE]">
       <div className="bg-[#dedbd3] rounded-t-4xl border-t-2 border-[#6d8333]">
-      <div className="mx-auto max-w-[1600px] px-6 py-20 sm:px-10 sm:py-28 lg:px-14 lg:py-32">
-        <div className="relative w-fit">
-          <h2 className="text-3xl font-medium tracking-tight text-neutral-900 sm:text-4xl">
-            All Products
-          </h2>
-          <span className="absolute -bottom-2 left-0 h-0.5 w-12 bg-[#6d8333]" />
-        </div>
+        <div className="mx-auto max-w-[1600px] px-6 py-20 sm:px-10 sm:py-28 lg:px-14 lg:py-32">
+          <div className="relative w-fit">
+            <h2 className="text-3xl font-medium tracking-tight text-neutral-900 sm:text-4xl">
+              All Products
+            </h2>
+            <span className="absolute -bottom-2 left-0 h-0.5 w-12 bg-[#6d8333]" />
+          </div>
 
-        {/* filter pills */}
-        <div className="mt-10 flex flex-wrap gap-3">
-          {filters.map((filter) => {
-            const isActive = activeFilter === filter;
-            return (
-              <button
-                key={filter}
-                onClick={() => setActiveFilter(filter)}
-                className={`rounded-full border px-5 py-2.5 text-sm font-medium transition-all cursor-pointer ${
-                  isActive
-                    ? "border-[#6d8333] bg-[#6d8333] text-white shadow-md shadow-[#6d8333]/20"
-                    : "border-stone-300 bg-[#E9E8E4] text-neutral-700 hover:border-[#6d8333] hover:text-[#5c7029]"
-                }`}
-              >
-                {filter}
-              </button>
-            );
-          })}
-        </div>
+          {/* filter pills */}
+          <div className="mt-10 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
+            {filters.map((filter) => {
+              const isActive = activeFilter === filter;
+              const Icon = filterIcons[filter] ?? LayoutGrid;
+              return (
+                <button
+                  key={filter}
+                  onClick={() => setActiveFilter(filter)}
+                  className={`flex items-center justify-center gap-2 rounded-2xl border px-4 py-3.5 text-sm font-medium transition-all cursor-pointer sm:rounded-full sm:px-5 sm:py-2.5 ${
+                    isActive
+                      ? "border-[#6d8333] bg-[#6d8333] text-white shadow-md shadow-[#6d8333]/25"
+                      : "border-stone-300 bg-[#E9E8E4] text-neutral-700 hover:border-[#6d8333] hover:text-[#5c7029]"
+                  }`}
+                >
+                  <Icon
+                    className={`h-4 w-4 shrink-0 sm:hidden ${isActive ? "text-white" : "text-[#6d8333]"}`}
+                  />
+                  <span className="text-center leading-tight">{filter}</span>
+                </button>
+              );
+            })}
+          </div>
 
-        {/* product grid */}
-        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {filteredProducts.map((product) => (
-            <ProductCard key={product.name} product={product} />
-          ))}
-        </div>
+          {/* product grid */}
+          <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {filteredProducts.map((product) => (
+              <ProductCard key={product.name} product={product} />
+            ))}
+          </div>
 
-        {filteredProducts.length === 0 && (
-          <p className="mt-10 text-sm text-neutral-500">
-            No products found in this category yet.
-          </p>
-        )}
+          {filteredProducts.length === 0 && (
+            <p className="mt-10 text-sm text-neutral-500">
+              No products found in this category yet.
+            </p>
+          )}
+        </div>
       </div>
-    </div>
     </section>
   );
 }
