@@ -43,7 +43,7 @@ export default function ProductDetail({
 
           <div className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
             {/* IMAGE */}
-            <div className="relative h-80 rounded-3xl bg-[#dedbd3] sm:h-[420px] lg:h-[520px]">
+            <div className="relative h-80 rounded-3xl bg-white sm:h-[420px] lg:h-[520px]">
               <Image
                 src={product.image}
                 alt={product.name}

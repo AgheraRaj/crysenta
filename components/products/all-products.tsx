@@ -42,7 +42,7 @@ export default function AllProducts() {
                   className={`flex items-center justify-center gap-2 rounded-2xl border px-4 py-3.5 text-sm font-medium transition-all cursor-pointer sm:rounded-full sm:px-5 sm:py-2.5 ${
                     isActive
                       ? "border-[#6d8333] bg-[#6d8333] text-white shadow-md shadow-[#6d8333]/25"
-                      : "border-stone-300 bg-[#E9E8E4] text-neutral-700 hover:border-[#6d8333] hover:text-[#5c7029]"
+                      : "border-stone-300 bg-white text-neutral-700 hover:border-[#6d8333] hover:text-[#5c7029]"
                   }`}
                 >
                   <Icon
