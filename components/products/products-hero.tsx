@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Leaf, Sprout, FlaskConical, Boxes } from "lucide-react";
+import { Sprout, ShieldCheck } from "lucide-react";
 
 export default function ProductsHero() {
   return (
@@ -31,87 +31,94 @@ export default function ProductsHero() {
       </div>
 
       {/* Trust / benefit showcase — three cards */}
-      <div className="rounded-t-4xl bg-black px-6 py-16 sm:px-10 sm:py-20 lg:px-14 lg:py-28">
+      <div className="rounded-t-[2.5rem] bg-black px-6 py-14 sm:rounded-t-[3rem] sm:px-10 sm:py-20 lg:rounded-t-4xl lg:px-14 lg:py-28">
         <div>
           <p className="text-sm font-semibold text-white">Why It Works</p>
-          <h2 className="mt-2 text-2xl leading-tight font-black tracking-tight text-neutral-500 sm:text-3xl lg:text-4xl">
+          <h2 className="mt-2 text-3xl leading-tight font-black tracking-tight text-neutral-400 sm:text-3xl lg:text-4xl">
             BUILT ON RESEARCH
             <br />
             TRUSTED IN <span className="text-[#6d8333]">EVERY FIELD</span>
           </h2>
         </div>
 
-        <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-[1fr_1.4fr_1fr]">
-          {/* CARD 1 — redesigned to match reference */}
-          <div className="relative flex min-h-[280px] flex-col overflow-hidden rounded-[2rem] bg-[#e2e8d3] p-7 sm:min-h-[320px] sm:p-8">
-            <Leaf
-              className="pointer-events-none absolute right-4 bottom-4 h-24 w-24 text-neutral-900/[0.06]"
+        {/*
+          Responsive strategy:
+          - mobile: 1 column, everything stacked
+          - md (tablet): 2 columns, photo card spans both so it doesn't get squeezed
+          - lg+ (desktop): original 3-column [1fr 1.4fr 1fr] layout
+        */}
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:mt-10 lg:grid-cols-[1fr_1.4fr_1fr]">
+          {/* CARD 1 — stat card */}
+          <div className="group relative flex min-h-[220px] flex-col overflow-hidden rounded-[2rem] bg-[#e2e8d3] p-6 sm:min-h-[260px] sm:p-7 lg:min-h-[320px] lg:p-8">
+            <Sprout
+              className="pointer-events-none absolute right-3 bottom-3 h-16 w-16 text-neutral-900/[0.06] sm:h-20 sm:w-20 lg:h-24 lg:w-24"
               aria-hidden="true"
               strokeWidth={1}
             />
 
-            <div className="relative flex h-11 w-11 items-center justify-center rounded-full bg-white/70">
-              <Sprout className="h-5 w-5 text-neutral-900" />
+            <div className="relative mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/70 sm:h-11 sm:w-11">
+              <Sprout className="h-4.5 w-4.5 text-neutral-900 sm:h-5 sm:w-5" />
             </div>
 
-            <div className="relative mt-auto">
-              <p className="text-6xl font-black tracking-tight text-neutral-900 sm:text-7xl">
+            <div className="relative mt-auto pr-14 sm:pr-16 lg:pr-0">
+              <p className="text-4xl font-bold tracking-tight text-neutral-900 sm:text-5xl lg:text-6xl">
                 3
               </p>
               <span className="mt-2 block h-0.5 w-10 bg-[#6d8333]" />
-              <h3 className="mt-4 text-xl leading-tight font-bold text-neutral-900">
-                Crop Nutrition Categories
+              <h3 className="mt-4 text-lg leading-tight font-bold text-neutral-900 sm:text-xl">
+                Specialized Nutrient Formulas
               </h3>
               <p className="mt-2 text-sm leading-6 text-neutral-600">
-                Water soluble fertilizers, liquid fertilizers, and micronutrients designed for diverse crop nutrition needs.
+                Advanced formulations for calcium, NPK, and micronutrient nutrition.
               </p>
             </div>
           </div>
 
-          {/* CARD 2 — photo-forward, unchanged */}
-          <div className="relative flex min-h-[280px] flex-col justify-end overflow-hidden rounded-[2rem] p-7 sm:min-h-[320px] sm:p-8">
+          {/* CARD 2 — photo-forward, spans full width on tablet so it isn't cramped */}
+          <div className="relative flex min-h-[260px] flex-col justify-end overflow-hidden rounded-[2rem] p-6 sm:min-h-[300px] sm:p-7 lg:min-h-[320px] lg:p-8">
             <Image
               src="/images/wheat-field-farmer-thumbsup.png"
               alt="Farmer approving healthy crops grown with Crysenta fertilizer"
               fill
               className="object-cover"
-              sizes="(min-width: 768px) 40vw, 100vw"
+              sizes="(min-width: 1024px) 40vw, 100vw"
             />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
 
             <div className="relative">
-              <h3 className="text-2xl leading-tight font-bold text-white">
-                Nutrition Designed for Every Stage
+              <h3 className="text-xl leading-tight font-bold text-white sm:text-2xl">
+                Grown With Purpose
               </h3>
               <p className="mt-3 max-w-xs text-sm leading-6 text-white/80">
-                From seed to harvest, every formula is engineered to meet
-                your crop&apos;s exact nutrient demands.
+                Every formula is field-tested to help farmers get more from
+                every acre, season after season.
               </p>
             </div>
           </div>
 
-          {/* CARD 3 — redesigned to match reference */}
-          <div className="relative flex min-h-[280px] flex-col overflow-hidden rounded-[2rem] bg-[#e2e8d3] p-7 sm:min-h-[320px] sm:p-8">
-            <Boxes
-              className="pointer-events-none absolute right-4 bottom-4 h-24 w-24 text-neutral-900/[0.06]"
+          {/* CARD 3 — stat card */}
+          <div className="group relative flex min-h-[220px] flex-col overflow-hidden rounded-[2rem] bg-[#e2e8d3] p-6 sm:min-h-[260px] sm:p-7 lg:min-h-[320px] lg:p-8">
+            <ShieldCheck
+              className="pointer-events-none absolute right-3 bottom-3 h-16 w-16 text-neutral-900/[0.06] sm:h-20 sm:w-20 lg:h-24 lg:w-24"
               aria-hidden="true"
               strokeWidth={1}
             />
 
-            <div className="relative flex h-11 w-11 items-center justify-center rounded-full bg-white/70">
-              <FlaskConical className="h-5 w-5 text-neutral-900" />
+            <div className="relative mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/70 sm:h-11 sm:w-11">
+              <ShieldCheck className="h-4.5 w-4.5 text-neutral-900 sm:h-5 sm:w-5" />
             </div>
 
-            <div className="relative mt-auto">
-              <p className="text-6xl font-black tracking-tight text-neutral-900 sm:text-7xl">
-                11+
+            <div className="relative mt-auto pr-14 sm:pr-16 lg:pr-0">
+              <p className="text-4xl font-bold tracking-tight text-neutral-900 sm:text-5xl lg:text-6xl">
+                99.9%
               </p>
               <span className="mt-2 block h-0.5 w-10 bg-[#6d8333]" />
-              <h3 className="mt-4 text-xl leading-tight font-bold text-neutral-900">
-                Crop Nutrition Products
+              <h3 className="mt-4 text-lg leading-tight font-bold text-neutral-900 sm:text-xl">
+                Fully Chelated Micronutrients
               </h3>
               <p className="mt-2 text-sm leading-6 text-neutral-600">
-                A growing portfolio of NPK fertilizers, specialty nutrients, micronutrients, and liquid formulations.
+                EDTA-chelated formulations ensure nutrients stay readily
+                available and absorbable to the plant.
               </p>
             </div>
           </div>
