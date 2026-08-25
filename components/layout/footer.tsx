@@ -223,7 +223,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="flex flex-col items-center justify-between gap-4 py-8 text-center text-sm text-neutral-400 sm:py-10 md:flex-row md:text-left">
           <p>
-            Copyright © 2026 Crysenta International. All rights reserved.
+            Copyright © {new Date().getFullYear()} Crysenta International. All rights reserved.
           </p>
 
           <ul className="flex flex-wrap justify-center gap-6 sm:gap-8">
