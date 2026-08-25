@@ -31,7 +31,7 @@ const socialLinks = [
   {
     icon: <FaInstagram />,
     label: "Instagram",
-    link: "https://www.instagram.com/p/DL8DoXAzX8t/",
+    link: "https://www.instagram.com/crysenta_international?igsi=ZGw5b3VybzFrZmxy",
   },
   {
     icon: <FaWhatsapp />,
