@@ -26,12 +26,12 @@ const socialLinks = [
   {
     icon: <FaFacebook />,
     label: "Facebook",
-    link: "#",
+    link: "https://www.facebook.com/p/Crysenta-International-61577856183937/",
   },
   {
     icon: <FaInstagram />,
     label: "Instagram",
-    link: "#",
+    link: "https://www.instagram.com/p/DL8DoXAzX8t/",
   },
   {
     icon: <FaWhatsapp />,
@@ -41,8 +41,8 @@ const socialLinks = [
 ];
 
 const legalLinks = [
-  { label: "Privacy Policy", href: "#" },
-  { label: "Terms of Services", href: "#" },
+  { label: "Privacy Policy", href: "/privacy-policy" },
+  { label: "Terms of Services", href: "/terms-of-services" },
 ];
 
 export default function Footer() {
