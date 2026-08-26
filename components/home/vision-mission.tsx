@@ -40,11 +40,14 @@ export default function MissionVision() {
                 src={panel.image}
                 alt={panel.imageAlt}
                 fill
+                sizes="(min-width: 1024px) 256px, (min-width: 640px) 192px, 128px"
                 className="object-cover"
               />
             </div>
 
-            <div className={`max-w-xl ${panel.reverse ? "text-right" : "text-left"}`}>
+            <div
+              className={`max-w-xl ${panel.reverse ? "text-right" : "text-left"}`}
+            >
               <h3 className="text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl lg:text-5xl">
                 {panel.label}
               </h3>

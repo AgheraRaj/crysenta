@@ -28,7 +28,10 @@ export default function ProductDetail({
   const [activePack, setActivePack] = useState(product.packs[0]);
 
   const hasUsageInfo = Boolean(
-    product.directions || product.compatibility || product.doseNotes || product.doseTable
+    product.directions ||
+    product.compatibility ||
+    product.doseNotes ||
+    product.doseTable,
   );
 
   return (
@@ -62,12 +65,16 @@ export default function ProductDetail({
                 alt={product.name}
                 fill
                 priority
+                sizes="(min-width: 1024px) 50vw, 100vw"
                 className="object-contain p-10 sm:p-14"
               />
             </motion.div>
 
             {/* INFO */}
-            <motion.div variants={fadeInUp} className="flex flex-col justify-center">
+            <motion.div
+              variants={fadeInUp}
+              className="flex flex-col justify-center"
+            >
               <span
                 className={`w-fit rounded-lg border px-2.5 py-1 text-[11px] font-semibold ${categoryPill[product.category] ?? "border-neutral-200 text-neutral-600"}`}
               >
@@ -99,10 +106,11 @@ export default function ProductDetail({
                         <button
                           key={pack}
                           onClick={() => setActivePack(pack)}
-                          className={`rounded-full border px-4 py-1.5 text-xs font-medium transition-colors cursor-pointer ${isActive
-                            ? "border-[#6d8333] bg-[#6d8333] text-white"
-                            : "border-stone-300 bg-white text-neutral-700 hover:border-[#6d8333] hover:text-[#5c7029]"
-                            }`}
+                          className={`rounded-full border px-4 py-1.5 text-xs font-medium transition-colors cursor-pointer ${
+                            isActive
+                              ? "border-[#6d8333] bg-[#6d8333] text-white"
+                              : "border-stone-300 bg-white text-neutral-700 hover:border-[#6d8333] hover:text-[#5c7029]"
+                          }`}
                         >
                           {pack}
                         </button>

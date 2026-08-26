@@ -101,6 +101,7 @@ export default function AboutFertilizer() {
                           src={src}
                           alt="Crysenta fertilizer bag"
                           fill
+                          sizes="(min-width: 1024px) 300px, (min-width: 640px) 270px, 220px"
                           className="object-contain drop-shadow-2xl"
                         />
                       </div>

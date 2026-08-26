@@ -50,19 +50,12 @@ export default function Footer() {
   return (
     <footer className="bg-black text-white">
       <div className="mx-auto max-w-[1920px] px-6 pt-14 sm:px-10 sm:pt-20">
-
         {/* Top Footer */}
         <Reveal className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-[1.1fr_0.8fr_0.9fr_1.4fr] lg:gap-12">
-
           {/* Logo + Social */}
           <div className="flex flex-col items-start lg:-mt-10">
-
             {/* Logo */}
-            <Link
-              href="/"
-              aria-label="Go to homepage"
-              className="block"
-            >
+            <Link href="/" aria-label="Go to homepage" className="block">
               <Image
                 src="/crysenta-darkmode-logo.png"
                 alt="Crysenta International"
@@ -70,16 +63,14 @@ export default function Footer() {
                 height={100}
                 priority
                 className="h-auto w-45 sm:w-48 lg:w-[300px]"
+                style={{ height: "auto" }}
               />
             </Link>
 
             {/* Social Links */}
             <div className="mt-5 space-y-10 lg:pl-6">
-
               <div className="relative">
-                <h4 className="text-md text-neutral-500">
-                  Follow Us
-                </h4>
+                <h4 className="text-md text-neutral-500">Follow Us</h4>
 
                 <span className="absolute -bottom-3 left-0 h-0.5 w-12 bg-green-500" />
               </div>
@@ -91,9 +82,7 @@ export default function Footer() {
                       <Link
                         href={item.link}
                         target={
-                          item.label === "WhatsApp"
-                            ? "_blank"
-                            : undefined
+                          item.label === "WhatsApp" ? "_blank" : undefined
                         }
                         rel={
                           item.label === "WhatsApp"
@@ -125,9 +114,7 @@ export default function Footer() {
           {/* Company */}
           <div>
             <div className="relative">
-              <h4 className="text-md text-neutral-500">
-                Company
-              </h4>
+              <h4 className="text-md text-neutral-500">Company</h4>
 
               <span className="absolute -bottom-3 left-0 h-0.5 w-12 bg-green-500" />
             </div>
@@ -151,9 +138,7 @@ export default function Footer() {
           {/* Contact Info */}
           <div>
             <div className="relative">
-              <h4 className="text-md text-neutral-500">
-                Contact Info
-              </h4>
+              <h4 className="text-md text-neutral-500">Contact Info</h4>
 
               <span className="absolute -bottom-3 left-0 h-0.5 w-12 bg-green-500" />
             </div>
@@ -177,9 +162,7 @@ export default function Footer() {
                 >
                   <FaEnvelope className="text-yellow-500 transition-transform duration-300 group-hover:rotate-12" />
 
-                  <span className="break-all">
-                    crysenta@gmail.com
-                  </span>
+                  <span className="break-all">crysenta@gmail.com</span>
                 </a>
               </li>
             </ul>
@@ -188,23 +171,17 @@ export default function Footer() {
           {/* Address */}
           <div>
             <div className="relative">
-              <h4 className="text-md text-neutral-500">
-                Address
-              </h4>
+              <h4 className="text-md text-neutral-500">Address</h4>
 
               <span className="absolute -bottom-3 left-0 h-0.5 w-12 bg-green-500" />
             </div>
 
             <p className="mt-10 flex max-w-md items-start gap-3 text-neutral-100">
-              <FaMapMarkerAlt
-                className="shrink-0 text-yellow-500"
-                size={25}
-              />
+              <FaMapMarkerAlt className="shrink-0 text-yellow-500" size={25} />
 
               <span className="mt-0.5">
-                Plot No. 10, Section-6, Jay Industrial Park,
-                Dhoraji Junagadh Road, At. - Makhiyala,
-                Tal. & Dist. - Junagadh - 362011,
+                Plot No. 10, Section-6, Jay Industrial Park, Dhoraji Junagadh
+                Road, At. - Makhiyala, Tal. & Dist. - Junagadh - 362011,
                 Gujarat, India.
               </span>
             </p>
@@ -224,7 +201,8 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="flex flex-col items-center justify-between gap-4 py-8 text-center text-sm text-neutral-400 sm:py-10 md:flex-row md:text-left">
           <p>
-            Copyright © {new Date().getFullYear()} Crysenta International. All rights reserved.
+            Copyright © {new Date().getFullYear()} Crysenta International. All
+            rights reserved.
           </p>
 
           <ul className="flex flex-wrap justify-center gap-6 sm:gap-8">
