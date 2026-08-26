@@ -10,6 +10,7 @@ import {
 } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import Link from "next/link";
+import Reveal from "../motion/reveal";
 
 const footerNav = [
   { label: "About Us", href: "/about" },
@@ -51,7 +52,7 @@ export default function Footer() {
       <div className="mx-auto max-w-[1920px] px-6 pt-14 sm:px-10 sm:pt-20">
 
         {/* Top Footer */}
-        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-[1.1fr_0.8fr_0.9fr_1.4fr] lg:gap-12">
+        <Reveal className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-[1.1fr_0.8fr_0.9fr_1.4fr] lg:gap-12">
 
           {/* Logo + Social */}
           <div className="flex flex-col items-start lg:-mt-10">
@@ -208,7 +209,7 @@ export default function Footer() {
               </span>
             </p>
           </div>
-        </div>
+        </Reveal>
 
         {/* Watermark */}
         <div

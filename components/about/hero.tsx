@@ -1,5 +1,10 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "motion/react";
 import { Leaf } from "lucide-react";
+import Reveal from "@/components/motion/reveal";
+import { fadeIn, fadeInUp, staggerContainer } from "@/lib/motion-variants";
 
 export default function AboutHero() {
   return (
@@ -13,9 +18,14 @@ export default function AboutHero() {
           strokeWidth={0.6}
         />
 
-        <div className="relative grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-end lg:gap-6">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={staggerContainer}
+          className="relative grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-end lg:gap-6"
+        >
           {/* LEFT — eyebrow label */}
-          <div className="lg:col-span-3">
+          <motion.div variants={fadeInUp} className="lg:col-span-3">
             <p className="text-sm font-semibold text-neutral-900">
               Who we are?
             </p>
@@ -26,10 +36,10 @@ export default function AboutHero() {
               formulates specialty crop nutrition and publishes agronomic
               research across the regions we serve.
             </p>
-          </div>
+          </motion.div>
 
           {/* RIGHT — heading */}
-          <div className="lg:col-span-9">
+          <motion.div variants={fadeInUp} className="lg:col-span-9">
             <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl md:text-6xl lg:text-8xl">
               We nurture a sustainable agricultural future
             </h1>
@@ -37,12 +47,15 @@ export default function AboutHero() {
               We formulate crop nutrition across every stage of growth, from
               seed to harvest.
             </p>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
 
       {/* Full-bleed image */}
-      <div className="relative h-[70vh] min-h-[420px] w-full sm:h-[75vh] lg:h-[85vh] rounded-t-4xl overflow-hidden">
+      <Reveal
+        variants={fadeIn}
+        className="relative h-[70vh] min-h-[420px] w-full sm:h-[75vh] lg:h-[85vh] rounded-t-4xl overflow-hidden"
+      >
         <Image
           src="/images/aerial-farm-tractor-field.png"
           alt="Aerial view of farmland with agricultural machinery"
@@ -51,7 +64,7 @@ export default function AboutHero() {
           className="object-cover"
           sizes="100vw"
         />
-      </div>
+      </Reveal>
     </section>
   );
 }

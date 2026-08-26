@@ -1,9 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import { LayoutGrid, Droplets, FlaskConical, Waves } from "lucide-react";
 import { filters, products } from "@/lib/products";
 import ProductCard from "@/components/products/product-card";
+import Reveal from "@/components/motion/reveal";
+import { fadeInUp, staggerContainer } from "@/lib/motion-variants";
 
 const filterIcons: Record<string, typeof LayoutGrid> = {
   "All Products": LayoutGrid,
@@ -21,8 +24,9 @@ export default function AllProducts() {
       : products.filter((p) => p.category === activeFilter);
 
   return (
-      <section className="bg-[#dedbd3]">
-        <div className="mx-auto max-w-[1600px] px-6 py-16 sm:px-10 sm:py-20 lg:px-14 lg:py-24">
+    <section className="bg-[#dedbd3]">
+      <div className="mx-auto max-w-[1600px] px-6 py-16 sm:px-10 sm:py-20 lg:px-14 lg:py-24">
+        <Reveal>
           <div className="relative w-fit">
             <h2 className="text-3xl font-medium tracking-tight text-neutral-900 sm:text-4xl">
               All Products
@@ -53,20 +57,31 @@ export default function AllProducts() {
               );
             })}
           </div>
+        </Reveal>
 
-          {/* product grid */}
-          <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {/* product grid — re-animates whenever the filter changes */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeFilter}
+            initial="hidden"
+            animate="visible"
+            variants={staggerContainer}
+            className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
+          >
             {filteredProducts.map((product) => (
-              <ProductCard key={product.slug} product={product} />
+              <motion.div key={product.slug} variants={fadeInUp}>
+                <ProductCard product={product} />
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
+        </AnimatePresence>
 
-          {filteredProducts.length === 0 && (
-            <p className="mt-10 text-sm text-neutral-500">
-              No products found in this category yet.
-            </p>
-          )}
-        </div>
+        {filteredProducts.length === 0 && (
+          <p className="mt-10 text-sm text-neutral-500">
+            No products found in this category yet.
+          </p>
+        )}
+      </div>
     </section>
   );
 }

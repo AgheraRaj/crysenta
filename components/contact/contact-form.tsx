@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import { Send, Phone, Mail, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import Reveal from "@/components/motion/reveal";
 
 const infoCards = [
   { icon: Phone, label: "Call Us", value: "+91 9998945296", href: "tel:+919998945296" },
@@ -27,7 +29,7 @@ export default function ContactForm() {
   return (
     <section className="bg-[#dedbd3]">
       <div className="mx-auto max-w-[1600px] px-5 sm:px-10 lg:px-14">
-        <div className="relative bottom-20 overflow-hidden rounded-3xl bg-white shadow-xl">
+        <Reveal className="relative bottom-20 overflow-hidden rounded-3xl bg-white shadow-xl">
           {/* glow accent */}
           <div
             className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-[#6d8333]/10 blur-3xl"
@@ -124,15 +126,23 @@ export default function ContactForm() {
                   <Send className="h-4 w-4" />
                 </Button>
 
-                {submitted && (
-                  <p className="text-sm font-medium text-[#6d8333]">
-                    Thanks — we&apos;ll get back to you shortly.
-                  </p>
-                )}
+                <AnimatePresence>
+                  {submitted && (
+                    <motion.p
+                      initial={{ opacity: 0, y: -8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeOut" }}
+                      className="text-sm font-medium text-[#6d8333]"
+                    >
+                      Thanks — we&apos;ll get back to you shortly.
+                    </motion.p>
+                  )}
+                </AnimatePresence>
               </form>
             </div>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

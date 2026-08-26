@@ -3,10 +3,13 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "motion/react";
 import { ArrowLeft, ArrowRight, Check, FileDown } from "lucide-react";
 import type { Product } from "@/lib/products";
 import { STANDARD_STORAGE } from "@/lib/products";
 import ProductCard, { categoryPill } from "@/components/products/product-card";
+import Reveal from "@/components/motion/reveal";
+import { fadeIn, fadeInUp, staggerContainer } from "@/lib/motion-variants";
 import {
   Carousel,
   CarouselContent,
@@ -33,17 +36,27 @@ export default function ProductDetail({
       {/* HERO */}
       <section className="bg-[#E9E8E4]">
         <div className="mx-auto max-w-[1600px] px-6 pt-28 pb-16 sm:px-10 sm:pt-32 sm:pb-20 lg:px-14 lg:pt-40 lg:pb-24">
-          <Link
-            href="/products"
-            className="inline-flex items-center gap-2 text-sm font-medium text-neutral-600 transition-colors hover:text-[#5c7029]"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Back to all products
-          </Link>
+          <motion.div initial="hidden" animate="visible" variants={fadeIn}>
+            <Link
+              href="/products"
+              className="inline-flex items-center gap-2 text-sm font-medium text-neutral-600 transition-colors hover:text-[#5c7029]"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              Back to all products
+            </Link>
+          </motion.div>
 
-          <div className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={staggerContainer}
+            className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16"
+          >
             {/* IMAGE */}
-            <div className="relative h-80 rounded-3xl bg-white sm:h-[420px] lg:h-[520px]">
+            <motion.div
+              variants={fadeIn}
+              className="relative h-80 rounded-3xl bg-white sm:h-[420px] lg:h-[520px]"
+            >
               <Image
                 src={product.image}
                 alt={product.name}
@@ -51,10 +64,10 @@ export default function ProductDetail({
                 priority
                 className="object-contain p-10 sm:p-14"
               />
-            </div>
+            </motion.div>
 
             {/* INFO */}
-            <div className="flex flex-col justify-center">
+            <motion.div variants={fadeInUp} className="flex flex-col justify-center">
               <span
                 className={`w-fit rounded-lg border px-2.5 py-1 text-[11px] font-semibold ${categoryPill[product.category] ?? "border-neutral-200 text-neutral-600"}`}
               >
@@ -120,8 +133,8 @@ export default function ProductDetail({
                   </a>
                 )}
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
@@ -130,7 +143,7 @@ export default function ProductDetail({
         <div className="mx-auto max-w-[1600px] px-6 py-16 sm:px-10 sm:py-20 lg:px-14 lg:py-24">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
             {/* LEFT — benefits + crops */}
-            <div className="lg:col-span-2">
+            <Reveal className="lg:col-span-2">
               {product.benefits && product.benefits.length > 0 && (
                 <>
                   <h2 className="text-2xl font-medium tracking-tight text-neutral-900 sm:text-3xl">
@@ -221,10 +234,10 @@ export default function ProductDetail({
                   </div>
                 </div>
               )}
-            </div>
+            </Reveal>
 
             {/* RIGHT — composition + usage sidebar */}
-            <div className="space-y-6">
+            <Reveal className="space-y-6">
               <div className="rounded-3xl bg-[#E9E8E4] p-6 sm:p-8">
                 <h3 className="text-lg font-semibold text-neutral-900">
                   Nutrient Composition
@@ -282,7 +295,7 @@ export default function ProductDetail({
                   </p>
                 </div>
               )}
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -290,32 +303,34 @@ export default function ProductDetail({
       {related.length > 0 && (
         <section className="bg-[#E9E8E4]">
           <div className="mx-auto max-w-[1600px] px-6 py-16 sm:px-10 sm:py-20 lg:px-14 lg:py-24">
-            <Carousel opts={{ align: "start", loop: false }}>
-              <div className="flex items-end justify-between gap-4">
-                <div className="relative w-fit">
-                  <h2 className="text-2xl font-medium tracking-tight text-neutral-900 sm:text-3xl">
-                    You Might Also Like
-                  </h2>
-                  <span className="absolute -bottom-2 left-0 h-0.5 w-12 bg-[#6d8333]" />
+            <Reveal>
+              <Carousel opts={{ align: "start", loop: false }}>
+                <div className="flex items-end justify-between gap-4">
+                  <div className="relative w-fit">
+                    <h2 className="text-2xl font-medium tracking-tight text-neutral-900 sm:text-3xl">
+                      You Might Also Like
+                    </h2>
+                    <span className="absolute -bottom-2 left-0 h-0.5 w-12 bg-[#6d8333]" />
+                  </div>
+
+                  <div className="hidden items-center gap-2 sm:flex">
+                    <CarouselPrevious className="static size-9 translate-y-0 border-stone-300 bg-white text-neutral-700 hover:border-[#6d8333] hover:text-[#6d8333]" />
+                    <CarouselNext className="static size-9 translate-y-0 border-stone-300 bg-white text-neutral-700 hover:border-[#6d8333] hover:text-[#6d8333]" />
+                  </div>
                 </div>
 
-                <div className="hidden items-center gap-2 sm:flex">
-                  <CarouselPrevious className="static size-9 translate-y-0 border-stone-300 bg-white text-neutral-700 hover:border-[#6d8333] hover:text-[#6d8333]" />
-                  <CarouselNext className="static size-9 translate-y-0 border-stone-300 bg-white text-neutral-700 hover:border-[#6d8333] hover:text-[#6d8333]" />
-                </div>
-              </div>
-
-              <CarouselContent className="mt-8 sm:mt-10">
-                {related.map((item) => (
-                  <CarouselItem
-                    key={item.slug}
-                    className="basis-[90%] pb-1 sm:basis-1/2 lg:basis-1/4"
-                  >
-                    <ProductCard product={item} />
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-            </Carousel>
+                <CarouselContent className="mt-8 sm:mt-10">
+                  {related.map((item) => (
+                    <CarouselItem
+                      key={item.slug}
+                      className="basis-[90%] pb-1 sm:basis-1/2 lg:basis-1/4"
+                    >
+                      <ProductCard product={item} />
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+              </Carousel>
+            </Reveal>
           </div>
         </section>
       )}

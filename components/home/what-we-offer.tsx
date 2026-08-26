@@ -6,6 +6,9 @@ import {
   CardTitle,
   CardDescription,
 } from "@/components/ui/card";
+import Reveal from "@/components/motion/reveal";
+import StaggerReveal from "@/components/motion/stagger-reveal";
+import StaggerItem from "@/components/motion/stagger-item";
 
 const offerings = [
   {
@@ -43,7 +46,7 @@ export default function WhatWeOffer() {
     <section className="bg-[#dedbd3]">
       <div className="mx-auto max-w-[1600px] px-6 py-20 sm:px-10 sm:py-28 lg:px-14 lg:py-32">
         {/* Header */}
-        <div className="flex flex-col justify-between gap-8">
+        <Reveal className="flex flex-col justify-between gap-8">
           <div>
             <div className="relative w-fit">
               <span className="text-sm font-medium tracking-[0.2em] text-[#6d8333] uppercase">
@@ -62,36 +65,35 @@ export default function WhatWeOffer() {
             together, closing nutrient gaps and building stronger yields
             season after season.
           </p>
-        </div>
+        </Reveal>
 
         {/* Grid */}
-        <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:mt-20 lg:grid-cols-4 lg:gap-8">
+        <StaggerReveal className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:mt-20 lg:grid-cols-4 lg:gap-8">
           {offerings.map((item) => {
             const Icon = item.icon;
             return (
-              <Card
-                key={item.title}
-                className="group bg-[#E9E8E4] p-8 transition-colors hover:border-[#6d8333]"
-              >
-                <CardHeader className="flex justify-between items-center p-0">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-full border border-[#6d8333] text-[#6d8333] transition-colors group-hover:bg-[#6d8333] group-hover:text-white">
-                    <Icon className="h-6 w-6" />
-                  </div>
-                  <span className="font-mono text-xs tracking-wider text-neutral-400">
-                    {item.code}
-                  </span>
-                </CardHeader>
+              <StaggerItem key={item.title}>
+                <Card className="group h-full bg-[#E9E8E4] p-8 transition-colors hover:border-[#6d8333]">
+                  <CardHeader className="flex justify-between items-center p-0">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-full border border-[#6d8333] text-[#6d8333] transition-colors group-hover:bg-[#6d8333] group-hover:text-white">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <span className="font-mono text-xs tracking-wider text-neutral-400">
+                      {item.code}
+                    </span>
+                  </CardHeader>
 
-                <CardContent className="mt-8 p-0">
-                  <CardTitle>{item.title}</CardTitle>
-                  <CardDescription className="mt-3">
-                    {item.description}
-                  </CardDescription>
-                </CardContent>
-              </Card>
+                  <CardContent className="mt-8 p-0">
+                    <CardTitle>{item.title}</CardTitle>
+                    <CardDescription className="mt-3">
+                      {item.description}
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+              </StaggerItem>
             );
           })}
-        </div>
+        </StaggerReveal>
       </div>
     </section>
   );

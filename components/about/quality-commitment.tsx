@@ -1,5 +1,8 @@
 import { CheckCircle2, Droplets, FlaskConical, Gauge } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import Reveal from "@/components/motion/reveal";
+import StaggerReveal from "@/components/motion/stagger-reveal";
+import StaggerItem from "@/components/motion/stagger-item";
 
 const points = [
   {
@@ -28,7 +31,7 @@ export default function QualityCommitment() {
   return (
     <section className="bg-black">
       <div className="mx-auto max-w-[1600px] px-6 py-20 sm:px-10 sm:py-28 lg:px-14 lg:py-32">
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-6">
+        <Reveal className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-6">
           {/* LEFT — eyebrow + stat */}
           <div className="lg:col-span-3">
             <p className="text-sm font-semibold text-white">
@@ -50,33 +53,32 @@ export default function QualityCommitment() {
 
           {/* RIGHT — checklist grid */}
           <div className="lg:col-span-9">
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <StaggerReveal className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               {points.map((point) => {
                 const Icon = point.icon;
                 return (
-                  <Card
-                    key={point.title}
-                    className="group gap-0 rounded-3xl border border-white/10 bg-white/[0.03] p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[#6d8333]/60 hover:bg-white/[0.06]"
-                  >
-                    <CardContent className="p-0">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#6d8333] text-white transition-transform duration-300 group-hover:scale-105">
-                        <Icon className="h-5 w-5" />
-                      </div>
+                  <StaggerItem key={point.title}>
+                    <Card className="group gap-0 rounded-3xl border border-white/10 bg-white/[0.03] p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[#6d8333]/60 hover:bg-white/[0.06]">
+                      <CardContent className="p-0">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#6d8333] text-white transition-transform duration-300 group-hover:scale-105">
+                          <Icon className="h-5 w-5" />
+                        </div>
 
-                      <h3 className="mt-6 text-lg font-semibold text-white">
-                        {point.title}
-                      </h3>
+                        <h3 className="mt-6 text-lg font-semibold text-white">
+                          {point.title}
+                        </h3>
 
-                      <p className="mt-2 text-sm leading-6 text-white/60">
-                        {point.description}
-                      </p>
-                    </CardContent>
-                  </Card>
+                        <p className="mt-2 text-sm leading-6 text-white/60">
+                          {point.description}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </StaggerItem>
                 );
               })}
-            </div>
+            </StaggerReveal>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

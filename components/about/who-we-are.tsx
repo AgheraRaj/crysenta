@@ -1,4 +1,7 @@
 import { Award, Tractor, FlaskConical, Globe2 } from "lucide-react";
+import Reveal from "@/components/motion/reveal";
+import StaggerReveal from "@/components/motion/stagger-reveal";
+import StaggerItem from "@/components/motion/stagger-item";
 
 const highlights = [
   { icon: Award, label: "Quality-focused" },
@@ -11,7 +14,7 @@ export default function WhoWeAre() {
   return (
     <section className="bg-[#dedbd3]">
       <div className="mx-auto max-w-[1600px] px-6 py-20 sm:px-10 sm:py-28 lg:px-14 lg:py-32">
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-6">
+        <Reveal className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-6">
           {/* LEFT — eyebrow */}
           <div className="lg:col-span-3">
             <p className="text-sm font-semibold text-neutral-900">
@@ -37,11 +40,11 @@ export default function WhoWeAre() {
               cycle, from the first watering to final harvest.
             </p>
 
-            <div className="mt-10 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
+            <StaggerReveal className="mt-10 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
               {highlights.map((item) => {
                 const Icon = item.icon;
                 return (
-                  <div
+                  <StaggerItem
                     key={item.label}
                     className="flex items-center gap-2.5 rounded-2xl border border-[#6d8333]/30 bg-[#E9E8E4] px-4 py-3 sm:rounded-full sm:px-5 sm:py-2.5"
                   >
@@ -51,12 +54,12 @@ export default function WhoWeAre() {
                     <span className="text-xs leading-4 font-medium text-neutral-800 sm:text-sm">
                       {item.label}
                     </span>
-                  </div>
+                  </StaggerItem>
                 );
               })}
-            </div>
+            </StaggerReveal>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

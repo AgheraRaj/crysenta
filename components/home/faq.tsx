@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import { Plus, Minus } from "lucide-react";
+import Reveal from "@/components/motion/reveal";
 
 const faqs = [
   {
@@ -32,15 +34,17 @@ export default function FAQ() {
   return (
     <section className="bg-[#E9E8E4]">
       <div className="mx-auto max-w-[1000px] px-6 py-20 text-center sm:px-10 sm:py-28 lg:py-32">
-        <h2 className="text-4xl font-medium tracking-tight text-neutral-900 sm:text-5xl lg:text-6xl">
-          Frequently Asked Questions
-        </h2>
+        <Reveal>
+          <h2 className="text-4xl font-medium tracking-tight text-neutral-900 sm:text-5xl lg:text-6xl">
+            Frequently Asked Questions
+          </h2>
 
-        <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-neutral-500 sm:text-lg">
-          Answers to the questions we hear most from farmers, distributors, and
-          agronomists about our crop nutrition products and how to get the best
-          results from them.
-        </p>
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-neutral-500 sm:text-lg">
+            Answers to the questions we hear most from farmers, distributors, and
+            agronomists about our crop nutrition products and how to get the best
+            results from them.
+          </p>
+        </Reveal>
 
         {/* Accordion */}
         <div className="mt-14 flex flex-col gap-4 text-left sm:mt-16">
@@ -71,16 +75,22 @@ export default function FAQ() {
                   </span>
                 </button>
 
-                <div
-                  className={`grid transition-all duration-300 ease-in-out ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-                    }`}
-                >
-                  <div className="overflow-hidden">
-                    <p className="px-6 pb-6 text-sm leading-6 text-neutral-600 sm:px-8 sm:text-base sm:leading-7">
-                      {faq.answer}
-                    </p>
-                  </div>
-                </div>
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      key="content"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <p className="px-6 pb-6 text-sm leading-6 text-neutral-600 sm:px-8 sm:text-base sm:leading-7">
+                        {faq.answer}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             );
           })}

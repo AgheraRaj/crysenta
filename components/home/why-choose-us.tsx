@@ -2,17 +2,22 @@ import Image from "next/image";
 import { Leaf, HeartHandshake, MoveRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Reveal from "@/components/motion/reveal";
+import StaggerReveal from "@/components/motion/stagger-reveal";
+import StaggerItem from "@/components/motion/stagger-item";
 
 const reasons = [
   {
     icon: Leaf,
     title: "Soil Friendly",
-    description: "Formulated to protect long-term soil health, not just one season's yield.",
+    description:
+      "Formulated to protect long-term soil health, not just one season's yield.",
   },
   {
     icon: HeartHandshake,
     title: "Farmer Focused",
-    description: "Every formula is developed around real field conditions, not lab assumptions.",
+    description:
+      "Every formula is developed around real field conditions, not lab assumptions.",
   },
 ];
 
@@ -22,7 +27,7 @@ export default function WhyChooseUs() {
       <div className="mx-auto max-w-[1600px] px-6 py-20 sm:px-10 sm:py-28 lg:px-14 lg:py-32">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
           {/* LEFT — image with floating testimonial */}
-          <div className="relative">
+          <Reveal className="relative">
             <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[2rem] bg-neutral-200 sm:aspect-[3/4]">
               <Image
                 src="/images/farmer.jpeg"
@@ -47,16 +52,14 @@ export default function WhyChooseUs() {
                   <p className="text-sm font-semibold text-neutral-900">
                     Ramesh Patel
                   </p>
-                  <p className="text-xs text-neutral-500">
-                    Junagadh, Gujarat
-                  </p>
+                  <p className="text-xs text-neutral-500">Junagadh, Gujarat</p>
                 </div>
               </div>
             </div>
-          </div>
+          </Reveal>
 
           {/* RIGHT — text */}
-          <div>
+          <Reveal>
             <div className="flex items-center gap-2">
               <span className="h-1.5 w-1.5 rounded-full bg-[#6d8333]" />
               <span className="text-xs font-semibold tracking-[0.2em] text-[#6d8333] uppercase">
@@ -69,16 +72,19 @@ export default function WhyChooseUs() {
             </h2>
 
             <p className="mt-5 max-w-md text-base leading-7 text-neutral-600 sm:text-lg sm:leading-8">
-              Every batch is tested for purity and nutrient balance before
-              it leaves our facility, so what&apos;s on the label is
-              exactly what reaches your soil.
+              Every batch is tested for purity and nutrient balance before it
+              leaves our facility, so what&apos;s on the label is exactly what
+              reaches your soil.
             </p>
 
-            <div className="mt-10 flex flex-col gap-7">
+            <StaggerReveal className="mt-10 flex flex-col gap-7">
               {reasons.map((reason) => {
                 const Icon = reason.icon;
                 return (
-                  <div key={reason.title} className="flex items-start gap-4">
+                  <StaggerItem
+                    key={reason.title}
+                    className="flex items-start gap-4"
+                  >
                     <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#6d8333]/30 bg-[#6d8333]/10 text-[#6d8333]">
                       <Icon className="h-5 w-5" />
                     </div>
@@ -90,10 +96,10 @@ export default function WhyChooseUs() {
                         {reason.description}
                       </p>
                     </div>
-                  </div>
+                  </StaggerItem>
                 );
               })}
-            </div>
+            </StaggerReveal>
 
             <Link href="/contact">
               <Button
@@ -104,7 +110,7 @@ export default function WhyChooseUs() {
                 <MoveRight />
               </Button>
             </Link>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
+import Reveal from "@/components/motion/reveal";
 
 const panels = [
   {
@@ -23,10 +23,9 @@ const panels = [
 export default function MissionVision() {
   return (
     <section className="bg-[#E9E8E4]">
-      {/* Alternating rows */}
       <div className="flex flex-col">
         {panels.map((panel, i) => (
-          <div
+          <Reveal
             key={panel.label}
             className={`relative flex items-center gap-8 bg-[#E9E8E4] px-6 sm:px-10 lg:gap-16 lg:px-14 ${
               panel.reverse ? "flex-row-reverse" : "flex-row"
@@ -36,7 +35,6 @@ export default function MissionVision() {
                 : "pt-6 pb-14 sm:pt-8 sm:pb-16 lg:pt-10 lg:pb-20"
             }`}
           >
-            {/* circular image */}
             <div className="relative h-32 w-32 shrink-0 overflow-hidden rounded-full ring-8 ring-white sm:h-48 sm:w-48 lg:h-64 lg:w-64">
               <Image
                 src={panel.image}
@@ -46,7 +44,6 @@ export default function MissionVision() {
               />
             </div>
 
-            {/* text */}
             <div className={`max-w-xl ${panel.reverse ? "text-right" : "text-left"}`}>
               <h3 className="text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl lg:text-5xl">
                 {panel.label}
@@ -55,7 +52,7 @@ export default function MissionVision() {
                 {panel.description}
               </p>
             </div>
-          </div>
+          </Reveal>
         ))}
       </div>
     </section>

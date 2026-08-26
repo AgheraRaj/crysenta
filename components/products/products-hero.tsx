@@ -1,5 +1,11 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "motion/react";
 import { Sprout, ShieldCheck, Droplets } from "lucide-react";
+import StaggerReveal from "@/components/motion/stagger-reveal";
+import StaggerItem from "@/components/motion/stagger-item";
+import { fadeInUp, staggerContainer } from "@/lib/motion-variants";
 
 export default function ProductsHero() {
   return (
@@ -11,19 +17,24 @@ export default function ProductsHero() {
           aria-hidden="true"
           strokeWidth={0.6}
         />
-        <div className="relative grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-end lg:gap-6">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={staggerContainer}
+          className="relative grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-end lg:gap-6"
+        >
           {/* LEFT — eyebrow label */}
-          <div className="lg:col-span-3">
+          <motion.div variants={fadeInUp} className="lg:col-span-3">
             <p className="text-sm font-semibold text-neutral-900">
               Our Products
             </p>
             <p className="mt-3 max-w-[220px] text-sm leading-6 text-neutral-500">
               Complete crop nutrition, formulated for every stage of growth.
             </p>
-          </div>
+          </motion.div>
 
           {/* RIGHT — heading */}
-          <div className="lg:col-span-9">
+          <motion.div variants={fadeInUp} className="lg:col-span-9">
             <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl md:text-6xl lg:text-8xl">
               Crop Nutrition, Perfected.
             </h1>
@@ -31,8 +42,8 @@ export default function ProductsHero() {
               Explore our full range of speciality fertilizers, engineered for
               balanced nutrition, healthier soil, and stronger yields.
             </p>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
 
       {/* Trust / benefit showcase — three cards */}
@@ -46,15 +57,9 @@ export default function ProductsHero() {
           </h2>
         </div>
 
-        {/*
-          Responsive strategy:
-          - mobile: 1 column, everything stacked
-          - md (tablet): 2 columns, photo card spans both so it doesn't get squeezed
-          - lg+ (desktop): original 3-column [1fr 1.4fr 1fr] layout
-        */}
-        <div className="mt-8 grid grid-cols-1 gap-4 sm:mt-10 lg:grid-cols-[1fr_1.4fr_1fr]">
+        <StaggerReveal className="mt-8 grid grid-cols-1 gap-4 sm:mt-10 lg:grid-cols-[1fr_1.4fr_1fr]">
           {/* CARD 1 — stat card */}
-          <div className="group relative flex min-h-[220px] flex-col overflow-hidden rounded-[2rem] bg-[#e2e8d3] p-6 sm:min-h-[260px] sm:p-7 lg:min-h-[320px] lg:p-8">
+          <StaggerItem className="group relative flex min-h-[220px] flex-col overflow-hidden rounded-[2rem] bg-[#e2e8d3] p-6 sm:min-h-[260px] sm:p-7 lg:min-h-[320px] lg:p-8">
             <Sprout
               className="pointer-events-none absolute right-3 bottom-3 h-16 w-16 text-neutral-900/[0.06] sm:h-20 sm:w-20 lg:h-24 lg:w-24"
               aria-hidden="true"
@@ -77,10 +82,10 @@ export default function ProductsHero() {
                 Advanced formulations for calcium, NPK, and micronutrient nutrition.
               </p>
             </div>
-          </div>
+          </StaggerItem>
 
-          {/* CARD 2 — photo-forward, spans full width on tablet so it isn't cramped */}
-          <div className="relative flex min-h-[260px] flex-col justify-end overflow-hidden rounded-[2rem] p-6 sm:min-h-[300px] sm:p-7 lg:min-h-[320px] lg:p-8">
+          {/* CARD 2 — photo-forward */}
+          <StaggerItem className="relative flex min-h-[260px] flex-col justify-end overflow-hidden rounded-[2rem] p-6 sm:min-h-[300px] sm:p-7 lg:min-h-[320px] lg:p-8">
             <Image
               src="/images/wheat-field-farmer-thumbsup.png"
               alt="Farmer approving healthy crops grown with Crysenta fertilizer"
@@ -99,10 +104,10 @@ export default function ProductsHero() {
                 every acre, season after season.
               </p>
             </div>
-          </div>
+          </StaggerItem>
 
           {/* CARD 3 — stat card */}
-          <div className="group relative flex min-h-[220px] flex-col overflow-hidden rounded-[2rem] bg-[#e2e8d3] p-6 sm:min-h-[260px] sm:p-7 lg:min-h-[320px] lg:p-8">
+          <StaggerItem className="group relative flex min-h-[220px] flex-col overflow-hidden rounded-[2rem] bg-[#e2e8d3] p-6 sm:min-h-[260px] sm:p-7 lg:min-h-[320px] lg:p-8">
             <ShieldCheck
               className="pointer-events-none absolute right-3 bottom-3 h-16 w-16 text-neutral-900/[0.06] sm:h-20 sm:w-20 lg:h-24 lg:w-24"
               aria-hidden="true"
@@ -126,8 +131,8 @@ export default function ProductsHero() {
                 available and absorbable to the plant.
               </p>
             </div>
-          </div>
-        </div>
+          </StaggerItem>
+        </StaggerReveal>
       </div>
     </section>
   );

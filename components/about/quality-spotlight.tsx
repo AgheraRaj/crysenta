@@ -1,5 +1,9 @@
 import Image from "next/image";
 import { Wheat, Leaf, Sprout, Award, Globe2, FlaskConical } from "lucide-react";
+import Reveal from "@/components/motion/reveal";
+import StaggerReveal from "@/components/motion/stagger-reveal";
+import StaggerItem from "@/components/motion/stagger-item";
+import { fadeIn } from "@/lib/motion-variants";
 
 const badgeIcons = [Wheat, Leaf, Sprout];
 
@@ -13,7 +17,10 @@ export default function QualitySpotlight() {
   return (
     <section className="bg-[#dedbd3]">
       <div className="mx-auto max-w-[1600px] px-6 pb-20 sm:px-10 sm:pb-28 lg:px-14 lg:pb-32">
-        <div className="relative min-h-[560px] overflow-hidden rounded-[2rem] sm:min-h-[600px] lg:min-h-[680px]">
+        <Reveal
+          variants={fadeIn}
+          className="relative min-h-[560px] overflow-hidden rounded-[2rem] sm:min-h-[600px] lg:min-h-[680px]"
+        >
           {/* BACKGROUND IMAGE */}
           <Image
             src="/images/farmer-in-field.png"
@@ -44,17 +51,17 @@ export default function QualitySpotlight() {
           </div>
 
           {/* icon badges */}
-          <div className="absolute bottom-6 left-6 flex gap-3 sm:bottom-10 sm:left-10">
+          <StaggerReveal className="absolute bottom-6 left-6 flex gap-3 sm:bottom-10 sm:left-10">
             {badgeIcons.map((Icon, i) => (
-              <div
+              <StaggerItem
                 key={i}
                 className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/20 bg-white/10 backdrop-blur-sm sm:h-16 sm:w-16"
               >
                 <Icon className="h-5 w-5 text-white sm:h-6 sm:w-6" />
-              </div>
+              </StaggerItem>
             ))}
-          </div>
-        </div>
+          </StaggerReveal>
+        </Reveal>
       </div>
     </section>
   );
