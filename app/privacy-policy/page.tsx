@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import LegalHero from "@/components/legal/legal-hero";
+import StaggerReveal from "@/components/motion/stagger-reveal";
+import StaggerItem from "@/components/motion/stagger-item";
 
 export const metadata: Metadata = {
   title: "Privacy Policy | Crysenta International",
@@ -55,18 +57,18 @@ export default function PrivacyPolicyPage() {
 
       <section className="bg-white">
         <div className="mx-auto max-w-[900px] px-6 py-16 sm:px-10 sm:py-20">
-          <div className="space-y-10">
+          <StaggerReveal className="space-y-10">
             {sections.map((section) => (
-              <div key={section.heading}>
+              <StaggerItem key={section.heading}>
                 <h2 className="text-xl font-semibold text-neutral-900 sm:text-2xl">
                   {section.heading}
                 </h2>
                 <p className="mt-3 text-base leading-7 text-neutral-600">
                   {section.body}
                 </p>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerReveal>
         </div>
       </section>
     </>
