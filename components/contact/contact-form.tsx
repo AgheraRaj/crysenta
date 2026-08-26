@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import Reveal from "@/components/motion/reveal";
+import { fadeInUp } from "@/lib/motion-variants";
 
 const infoCards = [
   {
@@ -44,7 +44,12 @@ export default function ContactForm() {
   return (
     <section className="bg-[#dedbd3]">
       <div className="mx-auto max-w-[1600px] px-5 sm:px-10 lg:px-14">
-        <Reveal className="relative bottom-20 overflow-hidden rounded-3xl bg-white shadow-xl">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={fadeInUp}
+          className="relative bottom-20 overflow-hidden rounded-3xl bg-white shadow-xl"
+        >
           {/* glow accent */}
           <div
             className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-[#6d8333]/10 blur-3xl"
@@ -208,7 +213,7 @@ export default function ContactForm() {
               </form>
             </div>
           </div>
-        </Reveal>
+        </motion.div>
       </div>
     </section>
   );
