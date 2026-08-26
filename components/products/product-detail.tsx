@@ -309,7 +309,7 @@ export default function ProductDetail({
                 {related.map((item) => (
                   <CarouselItem
                     key={item.slug}
-                    className="basis-[85%] pb-1 xs:basis-[70%] sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
+                    className="basis-[90%] pb-1 sm:basis-1/2 lg:basis-1/4"
                   >
                     <ProductCard product={item} />
                   </CarouselItem>
