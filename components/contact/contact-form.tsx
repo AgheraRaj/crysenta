@@ -10,9 +10,24 @@ import { Label } from "@/components/ui/label";
 import Reveal from "@/components/motion/reveal";
 
 const infoCards = [
-  { icon: Phone, label: "Call Us", value: "+91 9998945296", href: "tel:+919998945296" },
-  { icon: Mail, label: "Email Us", value: "crysenta@gmail.com", href: "mailto:crysenta@gmail.com" },
-  { icon: MapPin, label: "Visit Us", value: "Junagadh, Gujarat", href: "#" },
+  {
+    icon: Phone,
+    label: "Call Us",
+    value: "+91 9998945296",
+    href: "tel:+919998945296",
+  },
+  {
+    icon: Mail,
+    label: "Email Us",
+    value: "crysenta@gmail.com",
+    href: "mailto:crysenta@gmail.com",
+  },
+  {
+    icon: MapPin,
+    label: "Visit Us",
+    value: "Jay Industrial Park, Junagadh",
+    href: "https://www.google.com/maps/search/?api=1&query=21.5998333,70.461682",
+  },
 ];
 
 const fieldClass =
@@ -44,8 +59,8 @@ export default function ContactForm() {
                   Reach Us Directly
                 </p>
                 <p className="mt-3 max-w-[220px] text-sm leading-6 text-white/50">
-                  Prefer a quick call or email? Choose whatever works best
-                  for you.
+                  Prefer a quick call or email? Choose whatever works best for
+                  you.
                 </p>
               </div>
 
@@ -56,6 +71,12 @@ export default function ContactForm() {
                     <a
                       key={card.label}
                       href={card.href}
+                      target={card.label === "Visit Us" ? "_blank" : undefined}
+                      rel={
+                        card.label === "Visit Us"
+                          ? "noopener noreferrer"
+                          : undefined
+                      }
                       className="group flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-4 transition-colors hover:border-[#6d8333]/60 hover:bg-white/[0.08]"
                     >
                       <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#6d8333]">
@@ -79,36 +100,81 @@ export default function ContactForm() {
                 Send us a message and we&apos;ll get back to you shortly.
               </p>
 
-              <form onSubmit={handleSubmit} className="mt-10 flex flex-col gap-5">
+              <form
+                onSubmit={handleSubmit}
+                className="mt-10 flex flex-col gap-5"
+              >
                 <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                   <div>
-                    <Label htmlFor="firstName" className="mb-2 text-neutral-700">First Name *</Label>
-                    <Input id="firstName" placeholder="Ex. John" required className={fieldClass} />
+                    <Label
+                      htmlFor="firstName"
+                      className="mb-2 text-neutral-700"
+                    >
+                      First Name *
+                    </Label>
+                    <Input
+                      id="firstName"
+                      placeholder="Ex. John"
+                      required
+                      className={fieldClass}
+                    />
                   </div>
                   <div>
-                    <Label htmlFor="lastName" className="mb-2 text-neutral-700">Last Name *</Label>
-                    <Input id="lastName" placeholder="Ex. Doe" required className={fieldClass} />
+                    <Label htmlFor="lastName" className="mb-2 text-neutral-700">
+                      Last Name *
+                    </Label>
+                    <Input
+                      id="lastName"
+                      placeholder="Ex. Doe"
+                      required
+                      className={fieldClass}
+                    />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                   <div>
-                    <Label htmlFor="email" className="mb-2 text-neutral-700">Email *</Label>
-                    <Input id="email" type="email" placeholder="example@gmail.com" required className={fieldClass} />
+                    <Label htmlFor="email" className="mb-2 text-neutral-700">
+                      Email *
+                    </Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="example@gmail.com"
+                      required
+                      className={fieldClass}
+                    />
                   </div>
                   <div>
-                    <Label htmlFor="phone" className="mb-2 text-neutral-700">Phone *</Label>
-                    <Input id="phone" type="tel" placeholder="Enter Phone Number" required className={fieldClass} />
+                    <Label htmlFor="phone" className="mb-2 text-neutral-700">
+                      Phone *
+                    </Label>
+                    <Input
+                      id="phone"
+                      type="tel"
+                      placeholder="Enter Phone Number"
+                      required
+                      className={fieldClass}
+                    />
                   </div>
                 </div>
 
                 <div>
-                  <Label htmlFor="subject" className="mb-2 text-neutral-700">Subject *</Label>
-                  <Input id="subject" placeholder="Let us know here" required className={fieldClass} />
+                  <Label htmlFor="subject" className="mb-2 text-neutral-700">
+                    Subject *
+                  </Label>
+                  <Input
+                    id="subject"
+                    placeholder="Let us know here"
+                    required
+                    className={fieldClass}
+                  />
                 </div>
 
                 <div>
-                  <Label htmlFor="message" className="mb-2 text-neutral-700">Your Message *</Label>
+                  <Label htmlFor="message" className="mb-2 text-neutral-700">
+                    Your Message *
+                  </Label>
                   <Textarea
                     id="message"
                     placeholder="Write here..."

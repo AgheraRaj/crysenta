@@ -11,7 +11,7 @@ export default function ContactMap() {
       >
         <iframe
           title="Crysenta International location"
-          src="https://www.google.com/maps?q=Junagadh,Gujarat,India&output=embed"
+          src="https://www.google.com/maps?q=21.5998333,70.461682&z=16&output=embed"
           className="h-full w-full border-0 grayscale-[20%]"
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
@@ -30,7 +30,7 @@ export default function ContactMap() {
               Crysenta International
             </p>
             <p className="text-xs text-neutral-500">
-              Junagadh, Gujarat, India
+              Jay Industrial Park, Junagadh, Gujarat
             </p>
           </div>
         </Reveal>
